@@ -13,11 +13,13 @@
 -- status: 	OK
 -------------------------------------------------------------------------------
 LIBRARY ieee;
-LIBRARY user;
+-- LIBRARY user; -- Simplorer
 
 USE ieee.math_real.all;
-USE	ieee.electrical_systems.ALL;
-USE	ieee.mechanical_systems.ALL;
+use work.electromechanical_system.all; -- hAMSter
+use work.all                           -- hAMSter
+--USE	ieee.electrical_systems.ALL; -- Simplorer
+--USE	ieee.mechanical_systems.ALL; -- Simplorer
 
 ENTITY transducer IS
 
@@ -40,8 +42,8 @@ ARCHITECTURE basic OF transducer IS
   quantity v across i through n1 to n0;
   quantity u across f through m1 to m0;
 
-  quantity cap:real;
-  quantity dcdu:real;
+  quantity cap:real;  -- capacitance
+  quantity dcdu:real; -- Fel ~ dC/du
 
 -- MKS unit
   constant eps:real:=8.85e-12;	-- permittivity F/m, MKS unit
@@ -66,11 +68,11 @@ ARCHITECTURE basic OF transducer IS
 
 -- set#3
 -- Übung: Microsystem design: Analysis of electromechanical system by M. Naumann
---  constant m:real:=1.0;	    		-- mass
---  constant d:real:=0.0;				-- damping coefficient
---  constant c:real:=1.46;				-- spring constant
---  constant A:real:=50.0e-6*50.0e-6;	-- plate area
---  constant h:real:=3.0e-6;			-- initial gap
+--  constant m:real:=1.0;	    		-- mass, kg
+--  constant d:real:=0.0;				-- damping coefficient, Ns/m
+--  constant c:real:=1.46;				-- spring constant, N/m
+--  constant A:real:=50.0e-6*50.0e-6;	-- plate area, m*m
+--  constant h:real:=3.0e-6;			-- initial gap, m
 
 BEGIN
 
