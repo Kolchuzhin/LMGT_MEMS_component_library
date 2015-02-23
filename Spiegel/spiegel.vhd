@@ -7,12 +7,13 @@
 
 -- Library: kvl in hAMSter 
 -------------------------------------------------------------------------------
--- ID: 		spiegel.vhd
+-- ID: spiegel.vhd
+--
 -- Revision:
 -- Revision 1.0 - porting a code to Simplorer by Vladimir Kolchuzhin
 -- 23.02.2015 GitHub
-
--- Status: 	OK, model was compiled with hAMSter simulator
+--
+-- Status: Compile OK, model was compiled with hAMSter simulator
 -------------------------------------------------------------------------------
 LIBRARY ieee;
 --LIBRARY user; -- Simplorer
