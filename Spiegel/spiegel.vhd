@@ -12,23 +12,23 @@
 -- Revision 1.0 - porting a code to Simplorer by Vladimir Kolchuzhin
 -- 23.02.2015 GitHub
 
--- Status: 	OK
+-- Status: 	OK, model was compiled with hAMSter simulator
 -------------------------------------------------------------------------------
 LIBRARY ieee;
-LIBRARY user; -- hAMSter
+--LIBRARY user; -- Simplorer
 
 USE ieee.math_real.all;
---use work.electromechanical_system.all; -- hAMSter
-USE	ieee.electrical_systems.ALL; -- Simplorer
-USE	ieee.mechanical_systems.ALL; -- Simplorer
+use work.electromagnetic_system.all; -- hAMSter
+--USE	ieee.electrical_systems.ALL; -- Simplorer
+--USE	ieee.mechanical_systems.ALL; -- Simplorer
 
 
 ENTITY Spiegel IS
 
   port (terminal elec1,elec2,elec3:electrical;                               
---      terminal struc1,struc2:translational);  -- mechanical->translational
-        terminal struc1:translational;
-        terminal struc2:rotational);
+        terminal struc1,struc2:translational);  -- mechanical -> translational
+        --terminal struc1:translational; -- Simplorer
+        --terminal struc2:rotational);   -- Simplorer
 
 END ENTITY Spiegel;
 -------------------------------------------------------------------------------
@@ -67,7 +67,6 @@ BEGIN
   i1==(+(v1'dot-v2'dot)*cap1 + (dcap12_t*u1'dot+dcap12_r*u2'dot)*(v1-v2)+(v1'dot-v3'dot)*cap2 + (dcap13_t*u1'dot+dcap13_r*u2'dot)*(v1-v3));
   i2==(-(v1'dot-v2'dot)*cap1 - (dcap12_t*u1'dot+dcap12_r*u2'dot)*(v1-v2));
   i3==(-(v1'dot-v3'dot)*cap2 - (dcap13_t*u1'dot+dcap13_r*u2'dot)*(v1-v3));
-  -- i3==(-(v1'dot-v3'dot)*cap2 - (cap2'dot)*(v1-v3));
 
   cap1==+aeps/(egap+u1+(b+e_di)*0.25*u2);
   cap2==+aeps/(egap+u1-(b+e_di)*0.25*u2);
