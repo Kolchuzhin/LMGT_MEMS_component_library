@@ -8,22 +8,23 @@
 -- Library: kvl in hAMSter 
 -------------------------------------------------------------------------------
 -- ID: 		tranducer.vhd
--- ver. 	1.0
--- ver. 	1.1	23.02.2015 GitHub
--- status: 	OK
+-- 
+-- Revision:
+-- Revision 1.0 - 23.02.2015 GitHub
+-- 
+-- Status: Compile OK, model was compiled with hAMSter simulator
 -------------------------------------------------------------------------------
 LIBRARY ieee;
--- LIBRARY user; -- Simplorer
+--LIBRARY user; -- Simplorer
 
 USE ieee.math_real.all;
-use work.electromechanical_system.all; -- hAMSter
-use work.all                           -- hAMSter
---USE	ieee.electrical_systems.ALL; -- Simplorer
---USE	ieee.mechanical_systems.ALL; -- Simplorer
+use work.electromagnetic_system.all; -- hAMSter
+--USE ieee.electrical_systems.ALL; -- Simplorer
+--USE ieee.mechanical_systems.ALL; -- Simplorer
 
 ENTITY transducer IS
 
--- tranducer parameters:
+-- abstract microelectomechanical tranducer parameters:
 --  constant m:real:=4.658e-7;	-- mass
 --  constant d:real:=2.245e-3;	-- damping coefficient
 --  constant c:real:=270.4;		-- spring constant
