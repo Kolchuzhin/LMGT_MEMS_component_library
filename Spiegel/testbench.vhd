@@ -1,0 +1,1 @@
+-- Analytical based model of a micro-electro-mechanical transducer
