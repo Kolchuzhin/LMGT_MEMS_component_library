@@ -7,7 +7,7 @@
 
 -- Library: kvl in hAMSter 
 -------------------------------------------------------------------------------
--- ID: 		tranducer.vhd
+-- ID: 		transducer.vhd
 -- 
 -- Revision:
 -- Revision 1.0 - 23.02.2015 GitHub
