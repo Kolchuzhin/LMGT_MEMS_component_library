@@ -1,5 +1,7 @@
 
-
+Lawrence J. Giacoletto:
+FREQUENCY AND TIME-DOMAIN ANALYSIS OF SKIN EFFECTS,
+IEEE TRANSACTIONS ON MAGNETICS, VOL. 32, NO. I , JANUARY 1996
 
 O.M.O Gatous and J. Pissolato: 
 Frequency-dependent skin-effect formulation for resistance and internal inductance of a solid cylindrical conductor, 
