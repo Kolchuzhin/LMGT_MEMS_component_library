@@ -1,2 +1,2 @@
--- Analytical based model of a micro-electro-mechanical transducer
+-- Analytical based model of a micro-mirror
 -- coming soon ...
