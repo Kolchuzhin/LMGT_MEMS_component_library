@@ -16,8 +16,7 @@
 -- Lm = 3127.11 H
 -- Rm = 17 kOhm
 -- Cm = 1.35 fF
--- C  = 1.25 pF  ***
--- http://www.chemiephysikskripte.de/quarz/quarzfr.htm
+-- C  = 1.25 pF
 -------------------------------------------------------------------------------
 --
 --                           Lm       Rm        Cm 
@@ -39,8 +38,8 @@ entity quartz is
 	generic (
 		Rm_val:real;         		-- resistance value
 		Lm_val:real;         		-- inductance value
-		Cm_val:real;       			-- capacitance value
-    C_val:real);      			-- capacitance value 
+		Cm_val:real;			-- capacitance value
+		C_val:real);      		-- capacitance value 
 	port (terminal e1,e2:electrical);	-- interface terminals
 end entity quartz;
 -------------------------------------------------------------------------------
