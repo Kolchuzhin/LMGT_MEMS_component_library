@@ -23,7 +23,7 @@
 --                      e1        i1  ____   i2 ||   e2
 --                   <--o---^^^^--o--|____|--o--||---o-->
 --                      |                       ||   |
---                      |             || C           |
+--                      |             || Cp          |
 --			o-------------||-------------o
 --                                    ||
 --
@@ -39,12 +39,12 @@ entity quartz is
 		Rm_val:real;         		-- resistance value
 		Lm_val:real;         		-- inductance value
 		Cm_val:real;			-- capacitance value
-		C_val:real);      		-- capacitance value 
+		Cp_val:real);      		-- capacitance value 
 	port (terminal e1,e2:electrical);	-- interface terminals
 end entity quartz;
 -------------------------------------------------------------------------------
-architecture behav of quartz is
-	terminal i1,i2: electrical;			-- internal terminals
+architecture behav_subcircuit of quartz is	-- subcircuit
+	terminal i1,i2: electrical;		-- internal terminals
 begin
 
 Lm: 
@@ -59,10 +59,34 @@ Cm:
 	entity capacitor(basic)
 	generic map(Cm_val)
 	port map(i2,e2);
-C: 
+Cp: 
 	entity capacitor(basic)
-	generic map(C_val)
+	generic map(Cp_val)
 	port map(e1,e2);
 
-end architecture behav;
+end architecture behav_subcircuit;
+-------------------------------------------------------------------------------
+architecture behav_ode of quartz is		-- series RLC by 2nd ODE
+
+	quantity v across i through e1 to e2;
+
+begin
+
+	v == i'dot'dot + Rm_val/Lm_val*i'dot + 1.0/Lm_val/Cm_val*i;
+
+end architecture behav_ode;
+-------------------------------------------------------------------------------
+architecture behav_Hs of quartz is		-- series RLC by H(s)
+
+	quantity v across i through e1 to e2;
+
+	constant   numerator: real_vector(1 to 3):=(0.0, 1.0, 0.0);		-- a0 a1 a2
+	constant denomerator: real_vector(1 to 3):=(1.0/Cm_val,Rm_val,Lm_val);	-- b0 b1 b2
+
+begin
+
+	i == v'LTF(numerator,denomerator);
+
+end architecture behav_Hs;
+--=============================================================================
 --=============================================================================
