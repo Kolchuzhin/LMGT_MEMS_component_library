@@ -216,8 +216,14 @@ end process;
 
 break on sene_160(2),sene_160(3),sene_160(4),ca12_160(2),ca12_160(3),ca12_160(4);
 
+-- LIN w/o stress stiffening: fqr1=km_1*q1, fqr2=km_2*q2
+--fm1==mm_1*q1'dot'dot + dm_1*q1'dot +km_1*q1 -ca12_160(2)*(v1-v2)**2/2.0 +fi1_1*p1 +fi2_1*p2;
+--fm2==mm_2*q2'dot'dot + dm_2*q2'dot +km_2*q2 -ca12_160(3)*(v1-v2)**2/2.0 +fi1_2*p1 +fi2_2*p2;
+
+-- stress stiffening NL: fqr1=sene_160(2), fqr2=sene_160(3)
 fm1==mm_1*q1'dot'dot + dm_1*q1'dot +sene_160(2) -ca12_160(2)*(v1-v2)**2/2.0 +fi1_1*p1 +fi2_1*p2;
 fm2==mm_2*q2'dot'dot + dm_2*q2'dot +sene_160(3) -ca12_160(3)*(v1-v2)**2/2.0 +fi1_2*p1 +fi2_2*p2;
+
 r1==fi1_1*q1+fi1_2*q2-u1;
 r2==fi2_1*q1+fi2_2*q2-u2;
 f1==-p1;
