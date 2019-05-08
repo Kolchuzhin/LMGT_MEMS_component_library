@@ -1,0 +1,51 @@
+
+ *** PRINT STATUS OF REDUCED ORDER METHOD RESPONSE SURFACE
+
+  REFERENCE NAME = SENE    
+  DOMINANT MODE IN MODEL =  1
+  ALL RELEVANT MODES IN MODEL =  2, 
+  ONE RESPONSE SURFACE MODEL IS AVAILABLE
+
+  RESPONSE SURFACE MODEL  1
+    FITTING FUNCTION = LAGRANGE
+    CONSIDERED MODES  =  1,  2
+    POLYNOMIAL ORDERS =  4,  4
+    RAW DATA HAVE NOT BEEN INVERTED PRIOR FITTING
+    SCALING FACTOR APPLIED FOR RAW DATA =   40.190    
+    TOTAL NUMBER OF COEFFICIENTS IN MODEL =       25
+
+    QUALITY OF REGRESSION MODEL:
+     COEFF. OF MULTIPLE DETERM. (R2)     =   1.0000    
+     COEFF. OF ADJUSTED MULTIPLE DETERM. =   1.0000    
+     EUCLIDIAN NORM OF RESIDUAL          =  0.67700E-05
+     INFINITY NORM OF RESIDUAL           =  0.22863E-05
+
+    REGRESSION MODEL:
+                     TERM                      COEFFICIENT
+    -------------------------------------------------------
+     CONST                                     0.22645E-07
+     Mode1                                     0.50219E-14
+     Mode1^2                                   0.97460    
+     Mode1^3                                  -0.58435E-14
+     Mode1^4                                   0.67484E-03
+     Mode2                                     0.11201E-14
+     Mode1 *Mode2                             -0.13249E-06
+     Mode1^2 *Mode2                           -0.10109E-13
+     Mode1^3 *Mode2                            0.17265E-03
+     Mode1^4 *Mode2                            0.98658E-14
+     Mode2^2                                   0.24501E-01
+     Mode1 *Mode2^2                           -0.38191E-13
+     Mode1^2 *Mode2^2                          0.53008E-04
+     Mode1^3 *Mode2^2                          0.43715E-13
+     Mode1^4 *Mode2^2                          0.11892E-06
+     Mode2^3                                  -0.12240E-14
+     Mode1 *Mode2^3                            0.23570E-05
+     Mode1^2 *Mode2^3                          0.10996E-13
+     Mode1^3 *Mode2^3                          0.30710E-08
+     Mode1^4 *Mode2^3                         -0.10695E-13
+     Mode2^4                                   0.84228E-07
+     Mode1 *Mode2^4                            0.33930E-13
+     Mode1^2 *Mode2^4                          0.19677E-08
+     Mode1^3 *Mode2^4                         -0.38893E-13
+     Mode1^4 *Mode2^4                          0.95620E-08
+

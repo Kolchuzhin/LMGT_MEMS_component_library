@@ -1,0 +1,51 @@
+
+ *** PRINT STATUS OF REDUCED ORDER METHOD RESPONSE SURFACE
+
+  REFERENCE NAME = CAP12   
+  DOMINANT MODE IN MODEL =  1
+  ALL RELEVANT MODES IN MODEL =  2, 
+  ONE RESPONSE SURFACE MODEL IS AVAILABLE
+
+  RESPONSE SURFACE MODEL  1
+    FITTING FUNCTION = LAGRANGE
+    CONSIDERED MODES  =  1,  2
+    POLYNOMIAL ORDERS =  4,  4
+    RAW DATA HAVE BEEN INVERTED PRIOR FITTING
+    SCALING FACTOR APPLIED FOR RAW DATA =   221.20    
+    TOTAL NUMBER OF COEFFICIENTS IN MODEL =       25
+
+    QUALITY OF REGRESSION MODEL:
+     COEFF. OF MULTIPLE DETERM. (R2)     =  0.99992    
+     COEFF. OF ADJUSTED MULTIPLE DETERM. =  0.99992    
+     EUCLIDIAN NORM OF RESIDUAL          =  0.11003E-03
+     INFINITY NORM OF RESIDUAL           =  0.44131E-04
+
+    REGRESSION MODEL:
+                     TERM                      COEFFICIENT
+    -------------------------------------------------------
+     CONST                                     0.78698    
+     Mode1                                     0.23776    
+     Mode1^2                                  -0.42016E-01
+     Mode1^3                                   0.40472E-01
+     Mode1^4                                  -0.28444E-01
+     Mode2                                    -0.33329E-02
+     Mode1 *Mode2                             -0.10299E-02
+     Mode1^2 *Mode2                           -0.94489E-04
+     Mode1^3 *Mode2                           -0.45895E-02
+     Mode1^4 *Mode2                            0.46032E-02
+     Mode2^2                                  -0.41355E-04
+     Mode1 *Mode2^2                           -0.16728E-05
+     Mode1^2 *Mode2^2                         -0.25354E-03
+     Mode1^3 *Mode2^2                          0.47302E-03
+     Mode1^4 *Mode2^2                         -0.15870E-03
+     Mode2^3                                  -0.21343E-04
+     Mode1 *Mode2^3                           -0.20388E-03
+     Mode1^2 *Mode2^3                          0.39179E-03
+     Mode1^3 *Mode2^3                          0.57520E-03
+     Mode1^4 *Mode2^3                         -0.78183E-03
+     Mode2^4                                  -0.29134E-04
+     Mode1 *Mode2^4                           -0.36379E-04
+     Mode1^2 *Mode2^4                          0.31943E-03
+     Mode1^3 *Mode2^4                         -0.11070E-03
+     Mode1^4 *Mode2^4                         -0.18582E-03
+
