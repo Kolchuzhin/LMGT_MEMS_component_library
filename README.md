@@ -19,3 +19,8 @@ LMGT/MMT MEMS/NEMS component library
 | tpu_accelerometer                      |                |           |                                       |                                       |
 | vibration_gyroscope                    |                |           |                                       |                                       |
 | vibration_sensor                       |                |           |                                       |                                       |
+
+
+resistor.vhd 
+inductor.vhd 
+capacitor.vhd 
