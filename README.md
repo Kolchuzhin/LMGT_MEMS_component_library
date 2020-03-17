@@ -21,6 +21,6 @@ LMGT/MMT MEMS/NEMS component library
 | vibration_sensor                       |                |           |                                       |                                       |
 
 
-resistor.vhd 
-inductor.vhd 
+resistor.vhd,  
+inductor.vhd,  
 capacitor.vhd 
