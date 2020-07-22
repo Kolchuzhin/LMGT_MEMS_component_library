@@ -1,9 +1,18 @@
-Analytical based model of an abstract micro-electro-mechanical transducer:
+Analytical based model of an micro-electro-mechanical transducer:
 
 1) hAMSter simulator
-2) https://www.systemvision.com/groups/vladimirs-workspace/designs/mems-transducer
+2) TestBench in SystemVision:
+  
+    https://www.systemvision.com/groups/vladimirs-workspace/designs/mems-transducer-static-pull
+    https://www.systemvision.com/groups/vladimirs-workspace/designs/mems-transducer-harmonic-analysis
+    https://www.systemvision.com/groups/vladimirs-workspace/designs/mems-transducer-transient-analysis
+    https://www.systemvision.com/groups/vladimirs-workspace/designs/mems-transducer-mechanical-excitation
+    https://www.systemvision.com/groups/vladimirs-workspace/designs/mems-transducer-i/v-converter  
+    https://www.systemvision.com/groups/vladimirs-workspace/designs/mems-transducer-self-sustained-oscillations
+  
 
--- abstract microelectomechanical transducer parameters:
+=====================================================================================================
+-- microelectomechanical transducer parameters:
 
 -- set#1
 --  constant m:real:=4.658e-7;	-- mass
