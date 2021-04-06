@@ -14,7 +14,7 @@
 | magnetometer                           |                  |          |              | in progress                                 |
 | microelectromechanical_transducer      | transducer.vhd   |          |              | analytical model                            |
 | miscellaneous*                         |                  |          |              | resistor, inductor, capacitor               |
-| miscellaneous*                         | Hall_sensor.vhd  |          | SystemVision | Hall sensor                                 |
+| miscellaneous*                         | Hall_sensor.vhd  |          | SystemVision | Hall sensor: HS-420                         |
 | quartz                                 | quartz.vhd       |          |              | equivalent RLC circuit (BDV), 2nd ODE, H(s) |
 | resonator                              |                  |          |              | in progress                                 |
 | stopper                                |                  |          |              | in progress                                 |
@@ -33,6 +33,5 @@
 https://github.com/Kolchuzhin/piezoresistance_of_SWCNT_in_VHDL-AMS_part_I
 
 ## ANSYS ROM Tool
-https://github.com/Kolchuzhin/micromirror_cell_in_VHDL-AMS
-
-https://github.com/Kolchuzhin/clamped-clamped_beam_in_VHDL-AMS
+* https://github.com/Kolchuzhin/micromirror_cell_in_VHDL-AMS
+* https://github.com/Kolchuzhin/clamped-clamped_beam_in_VHDL-AMS
