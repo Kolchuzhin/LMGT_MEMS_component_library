@@ -35,3 +35,6 @@ https://github.com/Kolchuzhin/piezoresistance_of_SWCNT_in_VHDL-AMS_part_I
 ## ANSYS ROM Tool
 * https://github.com/Kolchuzhin/micromirror_cell_in_VHDL-AMS
 * https://github.com/Kolchuzhin/clamped-clamped_beam_in_VHDL-AMS
+
+## Reference
++ Guidelines for the Development of a VHDL-AMS Model Library. Version 2.0 
