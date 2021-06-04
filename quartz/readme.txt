@@ -20,7 +20,7 @@ Rm = 17 kOhm
 Cm = 1.35 fF
 Cp = 1.25 pF
 -------------------------------------------------------------------------------
-[Andreas Link, "Unterdr ̈uckung von parasit ̈arenModen in FBAR-Resonatoren", Dissertation, Universitaet Erlangen-Nuernberg, 2007]
+[Andreas Link, "Unterdrueckung von parasitaeren Moden in FBAR-Resonatoren", Dissertation, Universitaet Erlangen-Nuernberg, 2007]
 Die gegebenen Bauteilwerte sind typisch fuer das US-PCS-RX-Band mit AFBAR= (180μmxμm):
 Lm = 79.8 nH
 Rm = 2.77 Ohm
