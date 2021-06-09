@@ -1,0 +1,374 @@
+!xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!
+!xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!
+! 
+! Filename: rom2_ememb2a.mac, ANSYS 14.0
+! by <vladimir.kolchuzhin@ieee.org>, D-09126 Bernsdorf, 25.09.2015
+!
+! Issue: rectangular Si-membrane with electrostatic actuation
+!
+!	1. rom1_*.mac  FE-model gen: 
+!					ememb.db  model database
+!					ememb.ph1 structural ph
+!					ememb.ph2 electrostatic ph
+!
+!	2. rom2_*.mac ROM-model gen:
+! 					2.1 rom model definition
+! 					2.2 eload
+!					2.3 tload
+! 					2.4 modal+selection
+! 					2.5 data sampling
+! 					2.6 data fit
+! 					2.7 vhdl-ams-export
+!
+!					ANSYS ROM DB:
+!						*.pcs
+!						*.dec
+!						*.rom
+!
+!					VHDL-AMS model:
+!					     initial.vhdl
+!					   s_ams_160.vhdl
+!					ca12_ams_160.vhdl
+!					  transducer.vhdl
+!
+! Based on:
+! Clamped-clamped beam with fixed ground electrode (ANSYS Benchmark)
+!
+!
+!
+! Note:  The results are stored in files called jobname_ijk.dec 
+!
+!	whereby a separate file is written for each relevant mode k. 
+!	The files contain all the information necessary to evaluate 
+!	the behavior of the relevant mode k with respect to 
+!	the dominant modes i and j.
+!
+!       polynomial coefficients for the response surfaces jobname_ijk.pcs 
+!	correspond to the sample data file                jobname_ijk.dec
+!
+! Last update:
+! 05.04.2018 retested as rom1_ememb2a
+!xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!
+!xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!
+
+FINISH	$/CLEAR
+/CONTOUR,1,128
+*AFUN,DEG
+/VUP,1,Z
+
+prj_name='ememb'
+
+!==========================================================================!
+! 2.1 rom model definition
+
+/filnam,generpass		! jobname for the Generation Pass
+
+rmanl,%prj_name%,db,,3,z	! assign model database, dimensionality, oper. direction
+resu, %prj_name%,db		! resume model database
+
+rmcap,cap12,1,2			! define capacitance 12
+rmclist				! list capacitances
+
+rmaster,node(0.0,0.0,0.0)	! define master nodes
+rmaster,node(0.0,0.0,+memb_h/2)
+
+
+key_eload=0	! 0 - no eload; 1 - eload
+n_eload=2
+
+key_tload=0 ! LIN
+key_tload=1 !  NL
+ !key_tload=3 ! NL+contact
+
+key_prestress=0		! 0/1
+
+!==========================================================================!
+! 2.2 eload
+
+*IF,key_eload,gt,0,THEN
+
+/prep7
+
+physics,clear
+physics,read,STRU
+
+ /solu
+ antype,static 
+ nlgeom,off
+ !nlgeom,on	! ***
+
+! apply element loads
+! there are two element loads: acceleration and an uniform pressure load
+
+ !nlgeom,on
+ acel,,,9.81e12		! acceleration in Z-direction 9.81e6 m/s**2
+ lswrite,1
+
+ acel,0,0,0
+ esel,s,type,,1
+ nsle,s,1
+ nsel,r,loc,z,0
+ sf,all,pres,0.1	! uniform pressure load 100 kPa
+ allsel
+ lswrite,2
+
+ lssolve,1,2
+ solve
+ fini
+
+ /post1                        ! extract neutral plane displacements
+ set,1                         ! due to element loads
+ rmndisp,'eload','write'
+ set,2
+ rmndisp,'eload','append'
+
+*ENDIF
+!==========================================================================!
+! 2.3 tload
+
+*IF,key_tload,EQ,1,THEN	! test load
+
+/prep7
+
+physics,clear
+physics,read,STRU
+
+esel,s,type,,1
+nsle,s,1
+nsel,r,loc,z,+memb_h/2
+
+!sf,all,pres,0.1e-4	! uniform pressure load:  L solid45 uz max=-1.767  Smax=162.96
+sf,all,pres,0.1e-4	! uniform pressure load: NL solid45 uz max=-  Smax=
+
+!sf,all,pres,0.1e-1	! uniform pressure load: L  solid185 uz max=-7.24  Smax=
+!sf,all,pres,0.1e-4	! uniform pressure load: NL solid95  uz max=-1.825 Smax=103.99 MPa
+
+allsel
+
+/solu
+antype,static
+ !kbc,0		! loads are linearly interpolated (ramped) for each substep
+ !kbc,1
+nlgeom,off	! nlgeom,on
+
+solve
+
+/post1				! extract neutral plane displacements
+set,1 
+rmndisp,'tload','write'
+allsel
+plns,u,sum
+plns,u,z
+
+*ENDIF
+
+! test load displacements have been extracted for 2601 neutral plane nodes 
+! and written to file 'generpass.tld'
+!==========================================================================!
+! 2.4 modal analysis + mode selection 
+
+physics,clear
+physics,read,STRU
+
+n_mode=9
+
+*if,key_prestress,eq,1,then		! perform prestressed modal analysis
+ /solu
+ nlgeom,off
+ pstress,on	! thermal prestress (see rom1_)
+ solve
+ fini
+*endif
+
+/prep7
+
+ET,3,0 $ET,7,0 $ET,8,0
+
+/solu
+antype,modal
+modopt,lanb,n_mode
+!modopt,lanb,n_mode,,,,on	! norm to unity
+mxpand,n_mode
+ !pstress,on
+solve
+
+ ! Mode shape normalization key: Nrmkey
+ ! OFF  —  Normalize the mode shapes to the mass matrix (default)
+ !  ON  —  Normalize the mode shapes to unity
+
+ ! If a mode superposition analysis is planned, 
+ ! the mode shapes should be normalized to the mass matrix (Nrmkey = OFF)
+
+
+/post1
+
+*DIM,fmod,,n_mode,1
+*DO,I,1,n_mode,1
+  SET,1,I $PLDISP,1 $PLNS,U,SUM
+  *GET,fmod(I),ACTIVE,,SET,FREQ
+*ENDDO
+!.......................
+/OUT,%prj_name%_mode,dat
+*VWRITE,fmod(1)
+(E20.12)
+/OUT
+
+/DSCALE,,AUTO 
+ !/DSCALE,,1			! do not scale displacements 
+ !SET,1,6 $PLNS,U,SUM
+!--------------------------------------------------------------------------!
+/post1
+
+rmnevec				! plane nodes *.evx,*.evy,*.evz
+
+ ! Selects modes:
+ !  Case 1: Test Load is Available (TMOD option on RMMSELECT command)
+ !  Case 2: Test Load is not Available (NMOD option on RMMSELECT command)
+
+rmmselect,6,'tmod',-10.0,10.0	! automated mode selection using a test load: 1 and 6
+ !rmmselect,2,'nmod',-20,20	! First Nmode eigenmodes
+
+rmmlist				! list selected mode parameters
+
+!/eof
+!-------------
+! Modify modes
+
+i=1
+j=6
+
+Q1=20
+Q6=20
+
+Damp_1=8.52E-03 !
+Damp_6=2.69E-03 !
+
+!!! The default damping ratio is 0.00 (0.05) for all modes !!!
+!!! The maximum allowed number of dominant modes is 2 !!!
+
+ !RMMRANGE, Mode, Key, Min, Max, Nstep, Damp, Scale
+  ! Nstep Number of equidistant steps in fit range of mode
+  ! Dominant modes should be sampled with 8 to 11 steps, 
+  ! Relevant modes should be sampled with 3 to 5. 
+
+
+!RMMRANGE,1,'DOMINANT',-3.5138,3.5138,7,Damp_1,0.28459
+!RMMRANGE,2,'UNUSED'
+!RMMRANGE,3,'UNUSED'
+!RMMRANGE,4,'UNUSED'
+!RMMRANGE,5,'UNUSED'
+!RMMRANGE,6,'DOMINANT',-3.5138,3.5138,7,Damp_6,0.28459
+!RMMRANGE,7,'UNUSED'
+!RMMRANGE,8,'UNUSED'
+!RMMRANGE,9,'UNUSED'
+
+
+rmmlist				! list selected mode parameters
+
+!-------------
+rmsave,%prj_name%,rom		! save ROM database
+!==========================================================================!
+! 2.5 data sampling
+
+/prep7
+SHPP,OFF
+
+! runs finite element solutions and obtains sample points
+
+rmsmple,1			! nlgeom,on/off	1/0
+
+! Nlgeom
+ !Specify whether a large or small deflection analysis is to be performed for the mechanical domain:
+ !OFF (or 0)  —  Perform small deflection analysis (default).
+ !ON (or 1)  —  Perform large deflection analysis. 
+ 
+! Cap Capacitance calculation method:
+ !CHARGE  —  Compute capacitance based on the charge voltage relationship (default)
+ !CMATRIX  —  Employ CMATRIX macro to calculate capacitance
+ 
+! Seqslv Solver for structural analysis:
+ !SPARSE  —  Sparse direct equation solver (default).
+ !PCG  —  Pre-conditioned Conjugate Gradient iterative equation solver.
+
+! Eeqslv Solver for electrostatic analysis:
+ !SPARSE  —  Sparse direct equation solver (default).
+ !JCG  —  Jacobi Conjugate Gradient iterative equation solver.
+ !ICCG  —  Incomplete Cholesky Conjugate Gradient iterative equation solver.
+ 
+!--------------------------------------------------------------------------!
+! Required Input:
+ !Model Database filename.db 
+ !ROM Database jobname.rom, jobname.evx, jobname.evy, jobname.evz 
+
+! Output Files:
+ !Strain energy and capacitance data files jobname_ijk.dec (mode i,j,k)
+!==========================================================================!
+! 2.6 data fit
+
+rmporder,4,0,0,0,0,4 ! set polynomial orders for modes Ord1, Ord2, Ord3, . . . , Ord9
+
+ ! Polynomial orders for modes. Ordi specifies the polynomial order for modei. 
+ ! Modes are ordered as extracted from a modal analysis using the RMNEVEC command. 
+ ! Defaults to 0 if mode i is unused; default to nstep(i) -1 for dominant or relevant modes, 
+ ! where nstep(i) is the number of equidistant steps in fit range of mode i. nstep(i) is  
+ ! automatically  set by RMMSELECT or modified by the RMMRANGE command.
+!--------------------------------------------------------------------------!
+! specify response surface parameters
+
+rmroption,sene, lagrange,0
+rmroption,cap12,lagrange,1
+
+  !LAGRANGE  —  Lagrange type (default)
+  !REDLAGRANGE  —  Reduced Lagrange type
+  !PASCAL  —  Pascal type
+  !REDPASCAL  —  Reduced Pascal type
+
+!!! DOMINANT mode => only valid polynomial type Full Lagrange !!!
+
+rmrgenerate			! generate response surface
+
+!- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - !
+! print status of response surfaces
+
+rmrstatus,sene			
+rmrstatus,cap12
+
+
+! plot response surfaces
+
+rmrplot,sene,func		!, Mode1, Mode2: only dominant
+rmrplot,cap12,func		!, Mode1, Mode2
+
+! First and Second derivativse of response surface with respect to Mode1 and Mode2
+!RMRPLOT,sene,FIRST,1,6
+!RMRPLOT,sene,SECOND,1,6
+
+!RMRPLOT,cap12,FIRST,1,6
+!RMRPLOT,cap12,SECOND,1,6
+!--------------------------------------------------------------------------!
+
+rmsave,%prj_name%,rom		! save ROM database
+
+!==========================================================================!
+! 2.7 vhdl-ams-export
+
+*IF,key_eload,gt,0,THEN
+
+ !RMLVSCALE, Nload, Fact1, Fact2, Fact3, Fact4, Fact5
+ !Nload
+ ! Total number of load cases to be considered within a ROM use pass. 
+ ! If Nload = “DELETE”, all defined load vectors are deleted.
+ !Fact1, Fact2, Fact3, Fact4, Fact5
+
+ rmlvscale,n_eload,0,0	! to consider element loads in a VHDl-AMS model
+
+*ENDIF
+!--------------------------------------------------------------------------!
+
+rmxport	! extract model input files for system simulation in VHDL-AMS
+
+!==========================================================================!
+
+/eof
+
+!==========================================================================!
