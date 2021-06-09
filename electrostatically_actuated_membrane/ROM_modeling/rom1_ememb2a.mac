@@ -1,0 +1,366 @@
+!xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!
+!xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!
+! 
+! Filename: rom1_ememb2a.mac, ANSYS 14.0
+! by <vladimir.kolchuzhin@ieee.org>, D-09126 Bernsdorf, 25.09.2015
+!
+! Issue: rectangular Si-membrane with electrostatic actuation
+!
+!	1. rom1_*.mac  FE-model gen: 
+!					ememb.db  model database
+!					ememb.ph1 structural ph
+!					ememb.ph2 electrostatic ph
+!					ememb.ph3 (fluidic ph, optional)
+!	2. rom2_*.mac ROM-model gen:
+! 					2.1 rom model definition
+! 					2.2 eload
+!					2.3 tload
+! 					2.4 modal+selection
+! 					2.5 data sampling
+! 					2.6 data fit
+! 					2.7 vhdl-ams-export
+!
+!					ANSYS ROM DB:
+!						*.pcs
+!						*.dec
+!						*.rom
+!
+!					VHDL-AMS model:
+!					     initial.vhdl
+!					   s_ams_160.vhdl
+!					ca12_ams_160.vhdl
+!					  transducer.vhdl
+!
+! Based on:
+! Clamped-clamped beam with fixed ground electrode (ANSYS Benchmark)
+!
+! Last update:
+! 19.10.2015 quater comp, mapped mesh; vdrag
+! 05.04.2018 retested as rom1_ememb2a
+!xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!
+!xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!
+
+FINISH	$/CLEAR
+/CONTOUR,1,128
+ !*AFUN,DEG
+/VUP,1,Z
+/VIEW,1,1,-1,1
+/PNUM,TYPE,1
+/NUMBER,1
+/PBC,ALL,1
+
+PI=2*ASIN(1)		! PI
+!--------------------------------------------------------------------------!
+! Model geometric parameters
+
+memb_a=4000.0		! length
+memb_b=4000.0		! width
+memb_h=   5.0		! thickness
+fafl_l=	300.0		! farfield in plane direction
+fafl_h=	200.0		! farfield above membrane
+el_gap=	 30.0		! electrode gap
+!--------------------------------------------------------------------------!
+
+sigm_b=-100		! prestress 100MPa
+key_prestress=1		! 0/1
+
+
+key_model='full'	! full/half
+
+
+prj_name='ememb'
+/FILNAME,ememb
+!--------------------------------------------------------------------------!
+/PREP7
+
+ET,1,SOLID95		! structural domain
+ET,2,SOLID122		! electrostatic domain: 3-D 20-Node electrostatic solid
+ET,3,FLUID136		! fluid domain
+
+ET,5,MESH200,7		! 3-D quadrilateral with 8 nodes
+!--------------------------------------------------------------------------!
+! Material properties Si <110>, ***uMKSV units***
+
+eps0=8.85e-6		! free space permittivity
+
+E_Si=169e3		! Young's modulus, MPa
+NU_Si=0.066		! Poisson's ratio 
+dens_Si=2.329e-15	! density, (kg/m3)
+alpha_Si=1e-6		! thermal expansion coefficient
+
+
+MP,EX,1,E_Si		! Young's modulus
+MP,NUXY,1,NU_Si		! Poisson's ratio 
+MP,DENS,1,dens_Si	! density
+MP,ALPX,1,alpha_Si	! thermal expansion coefficient
+
+EMUNIT,EPZRO,eps0	! free space permittivity
+MP,PERX,2,1		! relative permittivity of air
+!--------------------------------------------------------------------------!
+! analitycal parameters:
+
+memb_area=memb_a*memb_a				! 16000000 um*um
+memb_mass=memb_area*memb_h*dens_Si		! 0.18632E-06
+
+Cp=sqrt(E_Si/dens_Si*(1-NU_Si**2))
+f01=1.654*Cp*memb_h/memb_a/memb_a		! 4393.353766 Hz
+
+k_eff=memb_mass*((2*PI*f01)**2)			! 141.97 N/m
+
+Cap=memb_area*eps0/el_gap	 		! 4.72 pF
+
+Vpi=sqrt(8*k_eff*el_gap**3/27/eps0/memb_area)	! 89.56 V
+
+V_test=Vpi
+
+es_pres=eps0*(V_test)**2/(2*el_gap**2)		! 0.3943747146E-04
+
+!f=1/2/PI*SQRT(23.67/0.3067e-7)
+!--------------------------------------------------------------------------!
+*if,key_model,eq,'half',then		! half model
+ !tbd
+*endif
+
+
+*if,key_model,eq,'full',then		! full model
+
+xd1=-memb_a/2-fafl_l
+xd2=+memb_a/2+fafl_l
+yd1=-memb_b/2-fafl_l
+yd2=+memb_b/2+fafl_l
+zd1=-memb_h/2-el_gap
+zd2=+memb_h/2+fafl_h
+
+!BLOCK,xd1,xd2,yd1,yd2,zd1,zd2		! entire domain
+
+!
+K, 1,-memb_a/2,-memb_b/2,zd1
+K, 2,+memb_a/2,-memb_b/2,zd1
+K, 3,+memb_a/2,+memb_b/2,zd1
+K, 4,-memb_a/2,+memb_b/2,zd1
+
+K,11,xd1,yd1,zd1
+K,12,xd2,yd1,zd1
+K,13,xd2,yd2,zd1
+K,14,xd1,yd2,zd1
+
+K,15,xd1,0.0,zd1
+K,16,xd2,0.0,zd1
+
+K,17,0.0,yd1,zd1
+K,18,0.0,yd2,zd1
+
+A,1,2,3,4
+A,11,12,13,14
+A,2,12,13,3
+A,3,13,14,4
+A,4,14,11,1
+A,1,11,12,2
+A,13,14,15,16
+A,11,17,18,14
+
+AOVLP,ALL
+NUMCMP,LINE
+NUMCMP,AREA
+
+K,100,0,0,-memb_h/2
+K,200,0,0,+memb_h/2
+K,300,0,0,zd2
+
+L,KP(0,0,zd1),100,3
+L,100,200,4
+L,200,300,5
+
+! stack:
+!
+!     ^
+!     |
+! 300 o		 zd2
+!     | air
+! 200 o	
+!     | membrane
+! 100 o	
+!     | air
+! 0   o          zd1
+
+memb_nx=15	! 15
+
+LSEL,S,LINE,,1,4
+LESIZE,ALL,,,3,,1
+
+LSEL,S,LOC,X,-memb_a/2*0.9,-memb_a/2*0.1	!
+LSEL,A,LOC,X,+memb_a/2*0.1,+memb_a/2*0.9	!
+LESIZE,ALL,,,memb_nx,,1		  		!
+
+LSEL,S,LOC,Y,-memb_b/2*0.9,-memb_b/2*0.1	!
+LSEL,A,LOC,Y,+memb_b/2*0.1,+memb_b/2*0.9	!
+LESIZE,ALL,,,memb_nx,,1		  		! 
+
+LSEL,ALL
+
+allsel
+
+MSHKEY,1 $MSHAPE,0,2D	! mapped meshing with quadrilateral-shaped elements 
+type,5
+amesh,all
+
+!/PNUM,LINE,1 $/NUMBER,0 $LPLOT $/eof
+
+
+*get,kp_max,KP,,NUM,MAX
+*get,ln_max,LINE,,NUM,MAX
+
+line_1=29
+line_2=30
+line_3=31
+
+allsel $type,2 $mat,2 $vdrag,all,,,,,,line_1,line_2,line_3
+
+allsel
+
+	!VEXT, NA1, NA2, NINC, DX, DY, DZ, RX, RY, RZ
+	!Generates additional volumes by extruding areas
+
+
+! delete 2D elements
+ESEL,S,TYPE,,5 $ACLEAR,ALL $ALLSEL
+
+
+vsel,s,volu,,12+ 9,12+10
+vsel,a,volu,,12+11,12+12
+eslv,s
+emodif,all,type,1
+emodif,all,mat,1
+
+VSEL,ALL
+
+vsel,s,loc,y,yd1,0.0
+eslv,s
+
+ !/PNUM,TYPE,0 $/NUMBER,1 $EPLOT $/eof
+
+!SMRTSIZ,2
+!MSHKEY,0 $MSHAPE,1,3D
+
+
+*GET,Nmax1,NODE,,NUM,MAX !
+*GET,Emax1,ELEM,,NUM,MAX !
+
+/head,off,off,off,off,off,off  
+/output,nummgr_data,dat,,append
+*VWRITE,Nmax1,Emax1
+(f12.1,f12.1)
+/output
+!--------------------------------------------------------------------------!
+! Movable electrode
+vsel,s,volu,,12+ 9,12+10
+vsel,a,volu,,12+11,12+12
+ASLV,S,1
+ !ASEL,U,LOC,X,0
+ !ASEL,U,LOC,X,B_L
+NSLA,S,1
+CM,COND1A,AREA
+CM,COND1,NODE		! conductor 1 node component
+ALLSEL
+
+vsel,s,volu,, 9,10
+vsel,a,volu,,11,12
+ASLV,S,1
+ASEL,R,LOC,Z,zd1	! fixed ground electrode
+
+NSLA,S,1
+CM,COND2A,AREA           
+CM,COND2,NODE		! conductor 2 node component
+ALLSEL
+
+! Region for DVMORPH
+!VSEL,U,VOLU,,1
+!VSEL,U,VOLU,,4
+
+vsel,s,volu,,12*0+ 9,12*0+10
+vsel,a,volu,,12*0+11,12*0+12
+vsel,a,volu,,12*2+ 9,12*2+10
+vsel,a,volu,,12*2+11,12*2+12
+CM,AIR,VOLU		! default name 'AIR'
+VSEL,ALL
+
+ESEL,S,MAT,,1
+NSLE,S,1
+NSEL,R,LOC,Z,0.0
+CM,NEUN,NODE		! neutral plane node component
+
+ALLSEL
+
+!--------------------------------------------------------------------------!
+
+/EDGE,,0 $EPLOT
+
+!==========================================================================!
+ET,1,0       
+            
+PHYSICS,WRITE,ELEC	! write electrostatic physics file
+PHYSICS,CLEAR
+!==========================================================================!
+!ET,1,0
+!ET,2,SOLID122
+!PHYSICS,WRITE,FLUID	! write fluid physics file
+!PHYSICS,CLEAR
+!==========================================================================!
+ET,1,SOLID95		! *** 45/95/185
+ET,2,0
+
+E_Si=169e3		! Young's modulus, MPa
+NU_Si=0.066		! Poisson's ratio 
+dens_Si=2.329e-15	! density, (kg/m3)
+alpha_Si=1e-6		! thermal expansion coefficient
+
+MP,EX,1,E_Si		! Young's modulus
+MP,NUXY,1,NU_Si		! Poisson's ratio 
+MP,DENS,1,dens_Si	! density
+MP,ALPX,1,alpha_Si	! thermal expansion coefficient
+
+
+vsel,s,volu,,12+ 9,12+10
+vsel,a,volu,,12+11,12+12
+ !ASLV,S,1
+ !ASEL,S,LOC,X,-memb_a/2
+ !ASEL,R,LOC,Z,+memb_h/2
+! ***
+ASEL,S,AREA,,70
+ASEL,A,AREA,,76
+ASEL,A,AREA,,66
+ASEL,A,AREA,,64
+ASEL,A,AREA,,55
+ASEL,A,AREA,,59
+ASEL,A,AREA,,79
+ASEL,A,AREA,,83
+
+NSLA,S,1
+
+CM,FIXA,AREA             ! boundary condition must be
+DA,ALL,UX                ! applied on solid model entities
+DA,ALL,UY
+DA,ALL,UZ
+
+ALLSEL
+!--------------------------------------------------------------------------!
+*if,key_prestress,eq,1,then		!
+ /SOLU
+ tref,0
+ tunif,sigm_b*(1-NU_Si)/(E_Si*alpha_Si)
+*endif
+!--------------------------------------------------------------------------!
+PHYSICS,WRITE,STRU	! write structural physics file
+!==========================================================================!
+/prep7
+ET,2,SOLID122
+EPLOT			! plot the entire model
+
+SAVE,prj_name,db	! save model database
+!--------------------------------------------------------------------------!
+*GET,Nmax,NODE,,NUM,MAX ! 66565
+*GET,Emax,ELEM,,NUM,MAX ! 16380
+
+!EWRITE,ET_%prj_name%,dat,,0,LONG
+!NWRITE,CT_%prj_name%,dat,,0,LONG
+!==========================================================================!
