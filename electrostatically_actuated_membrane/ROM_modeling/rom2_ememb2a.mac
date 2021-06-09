@@ -47,7 +47,7 @@
 !	correspond to the sample data file                jobname_ijk.dec
 !
 ! Last update:
-! 05.04.2018 retested as rom1_ememb2a
+! 05.04.2018 retested as rom2_ememb2a
 !xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!
 !xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!
 
@@ -193,8 +193,8 @@ mxpand,n_mode
 solve
 
  ! Mode shape normalization key: Nrmkey
- ! OFF  ó  Normalize the mode shapes to the mass matrix (default)
- !  ON  ó  Normalize the mode shapes to unity
+ ! OFF  ‚Äî  Normalize the mode shapes to the mass matrix (default)
+ !  ON  ‚Äî  Normalize the mode shapes to unity
 
  ! If a mode superposition analysis is planned, 
  ! the mode shapes should be normalized to the mass matrix (Nrmkey = OFF)
@@ -279,21 +279,21 @@ rmsmple,1			! nlgeom,on/off	1/0
 
 ! Nlgeom
  !Specify whether a large or small deflection analysis is to be performed for the mechanical domain:
- !OFF (or 0)  ó  Perform small deflection analysis (default).
- !ON (or 1)  ó  Perform large deflection analysis. 
+ !OFF (or 0)  ‚Äî  Perform small deflection analysis (default).
+ !ON (or 1)  ‚Äî  Perform large deflection analysis. 
  
 ! Cap Capacitance calculation method:
- !CHARGE  ó  Compute capacitance based on the charge voltage relationship (default)
- !CMATRIX  ó  Employ CMATRIX macro to calculate capacitance
+ !CHARGE  ‚Äî  Compute capacitance based on the charge voltage relationship (default)
+ !CMATRIX  ‚Äî  Employ CMATRIX macro to calculate capacitance
  
 ! Seqslv Solver for structural analysis:
- !SPARSE  ó  Sparse direct equation solver (default).
- !PCG  ó  Pre-conditioned Conjugate Gradient iterative equation solver.
+ !SPARSE  ‚Äî  Sparse direct equation solver (default).
+ !PCG  ‚Äî  Pre-conditioned Conjugate Gradient iterative equation solver.
 
 ! Eeqslv Solver for electrostatic analysis:
- !SPARSE  ó  Sparse direct equation solver (default).
- !JCG  ó  Jacobi Conjugate Gradient iterative equation solver.
- !ICCG  ó  Incomplete Cholesky Conjugate Gradient iterative equation solver.
+ !SPARSE  ‚Äî  Sparse direct equation solver (default).
+ !JCG  ‚Äî  Jacobi Conjugate Gradient iterative equation solver.
+ !ICCG  ‚Äî  Incomplete Cholesky Conjugate Gradient iterative equation solver.
  
 !--------------------------------------------------------------------------!
 ! Required Input:
@@ -318,10 +318,10 @@ rmporder,4,0,0,0,0,4 ! set polynomial orders for modes Ord1, Ord2, Ord3, . . . ,
 rmroption,sene, lagrange,0
 rmroption,cap12,lagrange,1
 
-  !LAGRANGE  ó  Lagrange type (default)
-  !REDLAGRANGE  ó  Reduced Lagrange type
-  !PASCAL  ó  Pascal type
-  !REDPASCAL  ó  Reduced Pascal type
+  !LAGRANGE  ‚Äî  Lagrange type (default)
+  !REDLAGRANGE  ‚Äî  Reduced Lagrange type
+  !PASCAL  ‚Äî  Pascal type
+  !REDPASCAL  ‚Äî  Reduced Pascal type
 
 !!! DOMINANT mode => only valid polynomial type Full Lagrange !!!
 
@@ -357,7 +357,7 @@ rmsave,%prj_name%,rom		! save ROM database
  !RMLVSCALE, Nload, Fact1, Fact2, Fact3, Fact4, Fact5
  !Nload
  ! Total number of load cases to be considered within a ROM use pass. 
- ! If Nload = ìDELETEî, all defined load vectors are deleted.
+ ! If Nload = ‚ÄúDELETE‚Äù, all defined load vectors are deleted.
  !Fact1, Fact2, Fact3, Fact4, Fact5
 
  rmlvscale,n_eload,0,0	! to consider element loads in a VHDl-AMS model
