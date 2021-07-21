@@ -19,6 +19,7 @@
 | resonator                              |                    |          |              | _in progress_                               |
 | stopper                                |                    |          |              | _in progress_                               |
 | tensoresistor                          | tensoresitor.vhd   |          |              | analytical model of Me-tensoresistor        |
+| uniaxial_accelerometer                 |                    |          |              | _in progress_                               |
 | tpu_accelerometer                      |                    |          |              | _in progress_                               |
 | vibration_gyroscope                    |                    |          |              | _in progress_                               |
 | vibration_sensor                       |                    |          |              | _in progress_                               |
