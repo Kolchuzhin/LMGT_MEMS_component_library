@@ -23,6 +23,8 @@ accelZa_02.vhd
 * element load: the linear acceleration of the structure az=1g x az_input
 * master nodes: 8
 
+testbench_02.vhd testbench
+
 
 ## Reference
 "Physically-Based Reduced Order Modelling of a Uni-Axial Polysilicon MEMS Accelerometer" Sensors 2012, 12(10), 13985-14003; doi:10.3390/s121013985
