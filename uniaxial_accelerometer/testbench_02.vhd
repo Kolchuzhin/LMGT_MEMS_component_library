@@ -4,7 +4,7 @@
 --
 --
 -- Author: <vladimir.kolchuzhin@ieee.org>
--- Date: 19.10.2011
+-- Date: 30.09.2021
 
 -- Library dependencies:
 --	accelZa_02.vhd - VHDL-AMS generated code from ANSYS for hAMSter
@@ -13,20 +13,30 @@
 -------------------------------------------------------------------------------
 -- parameters, uMKSV units 
 --
---					 0. modal static mechanical test, constant load
---					10. static mechanical test: az_input 
+-- loading cases
+--   0. static mechanical test: az_input
+--	10. static mechanical test, constant modal forces
+--	11.        mechanical test: ramp/sweep 
+--	12.        mechanical test: sin/chirp
+--	13.        mechanical test: puls
+
+--	20. static electrical test: dc
+--	21.        electrical test: ramp/sweep, pull-in
+--	22.        electrical test: chirp
+--	23.        electrical test: puls
+--
 --
 --
 -- Damping: modal quality factors qm_i in accelZa_02.vhd
 --
 -------------------------------------------------------------------------------
--- Euler solver: time=5m; step=500n *** 2021-07-27
+-- Euler solver: time=5m; step=200n *** 2021-07-27
 -------------------------------------------------------------------------------
 -- ID: testbench_02.vhd
 
 -- ver. 0.22 02.08.2021 8 master nodes, az_input
 -- ver. 0.30 29.09.2021 GitHuB realize
-
+-- ver. 0.31 30.09.2021 more loading cases
 --*****************************************************************************
 --*****************************************************************************
 
@@ -76,42 +86,45 @@ architecture behav of testbench is
 
   quantity az_input: real;
 
-  constant digital_delay:time:=500.0 ns;        -- digital time step size for matrix update == analog time step
+  constant digital_delay:time:=200.0 ns;        -- digital time step size for matrix update == analog time step
 
 --  constant az_input:real:=1.0*10.0;
 
-  constant t_end:real:=5.0e-03;
-  constant    dt:real:=5.0e-07; -- time step
+  constant t_end:real:=5.0E-03;
+  constant    dt:real:=2.0E-07; -- time step
 
   constant ac_value:real:= 1.0;
-  constant dc_value:real:= 1.5;
+  constant dc_value:real:= 1.1; -- V23_pullin=1.085V (ANSYS) / gap=1.8
 
 -- puls
   constant   t1:real:= 0.3E-03;
   constant   t2:real:= 1.0E-03; -- 5.0E-06
 -- chirp
+  constant fm_1:real:=   1205.3;	-- mode1 frequency
+  constant fm_2:real:=  15539.0; 	-- mode5 frequency
   constant f_begin:real:=   1205.3*0.1;               -- begin of frequency sweep
-  constant f_end:real:=    15539.0*2.0;               --   end of frequency sweep
+  constant f_end:real:=     1205.3*7.0;               --   end of frequency sweep
 
   constant fm1_test:real:=  0.2716; -- f=k*u => u=f/k
   constant fm2_test:real:=  76.516;
 
+-- loading cases
+--	constant   key_load:integer:= 0; -- static mechanical test: az_input
 
-	constant   key_load:integer:= 0; -- modal static mechanical test
---	constant   key_load:integer:=10; -- static mechanical test: az_input
+--	constant   key_load:integer:=10; -- static mechanical test: constant modal forces
+--	constant   key_load:integer:=11; --        mechanical test: ramp/sweep 
+--	constant   key_load:integer:=12; --        mechanical test: sin/chirp
+--	constant   key_load:integer:=13; --        mechanical test: puls
+
+--	constant   key_load:integer:=20; -- static electrical test: dc
+	constant   key_load:integer:=21; --        electrical test: ramp/sweep, pull-in
+--	constant   key_load:integer:=22; --        electrical test: chirp
+--	constant   key_load:integer:=23; --        electrical test: puls
 
 begin
 
 -- Loads
-if key_load = 0 use -- modal static mechanical test
-     az_input == 0.0;
-     v_ext1==0.0;
-	 v_ext2==0.0;
-	fm_ext1==fm1_test;          -- external modal force 1: fm_1=km_1 => q_1=1
-	fm_ext2==fm2_test;          -- external modal force 2: fm_2=km_2 => q_2=1
-end use;
-
-if key_load = 10 use -- static mechanical test: az_input
+if key_load =  0 use -- static mechanical test: az_input
      az_input == 2.0;
 	 --az_input == 10.0/t_end*now;
      v_ext1==0.0;
@@ -135,9 +148,103 @@ if key_load = 10 use -- static mechanical test: az_input
 
 end use;
 
+if key_load = 10 use -- static mechanical test: modal forces
+     az_input == 0.0;
+     v_ext1==0.0;
+	 v_ext2==0.0;
+	fm_ext1==fm1_test;          -- external modal force 1: fm_1=km_1 => q_1=1
+	fm_ext2==fm2_test;          -- external modal force 2: fm_2=km_2 => q_2=1 
+end use;
+
+if key_load = 11 use -- ramp/sweep 
+	az_input == 0.0;
+    v_ext1==0.0;
+	v_ext2==0.0;
+	fm_ext1==fm1_test/t_end/1.0*now;
+	fm_ext2==fm2_test/t_end/1.0*now;
+end use;
+
+if key_load = 12 use -- sin/chirp 
+	az_input == 0.0;
+    v_ext1==0.0;
+	v_ext2==0.0;
+	fm_ext1==0.0 + fm1_test*sin(2.0*3.14*(f_begin + (f_end-f_begin)/t_end*now) * now);
+	fm_ext2==0.0;          
+end use;
+
+if key_load = 13 use -- puls
+	az_input == 0.0;
+    v_ext1==0.0;
+	v_ext2==0.0;
+	fm_ext2==0.0;
+ if now <= t1-dt use         
+	fm_ext1 == 0.0;
+  end use;
+  if now > t1-dt and now <= t1 use
+	fm_ext1 == 0.0;
+  end use;        
+  if now > t1 and now <= t2 use
+	fm_ext1 == fm1_test*0.2;
+  end use;
+  if now > t2 and now <= t2+dt use
+	fm_ext1 == 0.0;
+  end use;
+  if now > t2+dt use
+	fm_ext1 == 0.0;
+ end use;
+end use;
+
+
+if key_load = 20 use -- static electrical
+	az_input == 0.0;
+    v_ext1== 0.5;
+	v_ext2== 0.0; -- ground electrode
+	fm_ext1==0.0;
+	fm_ext2==0.0;
+end use;
+
+if key_load = 21 use -- ramp/sweep
+	az_input == 0.0;
+    v_ext2 == dc_value/t_end*now;
+	i_ext1== 0.0;
+	fm_ext1==0.0;
+	fm_ext2==0.0;
+end use;
+
+if key_load = 22 use -- chirp
+	az_input == 0.0;
+    v_ext1 == dc_value*0.1 + ac_value*sin(2.0*3.14*(f_begin + (f_end-f_begin)/t_end*now) * now);
+	v_ext2== 0.0;
+	fm_ext1==0.0;
+	fm_ext2==0.0;
+
+end use;
+
+if key_load = 23 use -- puls
+	az_input == 0.0;
+ if now <= t1-dt use         
+	v_ext1 == 0.0;
+  end use;
+  if now > t1-dt and now <= t1 use
+	v_ext1 == 0.0;
+  end use;        
+  if now > t1 and now <= t2 use
+	v_ext1 == dc_value*0.1;
+  end use;
+  if now > t2 and now <= t2+dt use
+	v_ext1 == 0.0;
+  end use;
+  if now > t2+dt use
+	v_ext1 == 0.0;
+ end use;
+	v_ext2== 0.0;
+	fm_ext1==0.0;
+	fm_ext2==0.0;
+end use;
+
 -- BCs:
---i_ext3==0.0;
-v_ext3==0.0;
+--i_ext3==0.0; -- floating movable plate
+v_ext3==0.0; -- grounded movable plate
 
 --fm_ext1==0.0;          -- external modal force 1
 --fm_ext2==0.0;          -- external modal force 2
@@ -170,7 +277,7 @@ f_ext8==0.0;           -- external nodal force on master node 8
 --    Lagrangian ports   o------o---------o------o     Nodal ports: 5 master nodes
 --                       |                       | 
 --  r_ext1=0 ->>- p1 o---o                       o---o u1 -<<- f_ext1=0
---                       |   element: accelZa_02 |
+--                       |  element: accelZa_02  |
 --                p2 o---o                       o---o u2 -<<- f_ext2=0
 --                       |                       |
 --                p3 o---o                       o---o u3 -<<- f_ext3=0
@@ -198,7 +305,7 @@ f_ext8==0.0;           -- external nodal force on master node 8
 ------------------------------------------------------------------------------- 
 ROM_element:      
 
- 			    entity accelZa_02(ROM)
+                entity accelZa_02(ROM)
    	       generic map (digital_delay)
  	          port map (az_input,
                         struc1_ext,struc2_ext,
