@@ -1,6 +1,6 @@
 # MEMS magnetic actuator based on Ampère's force
 
-* two parallel monocrystalline silicon beams (1000x100x15um)
+* two current carrying parallel monocrystalline silicon beams (1000x100x15um)
 * the distance between beams is 90um
 * selected modes for ROM model: 1,3, and 8
 
