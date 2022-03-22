@@ -8,8 +8,11 @@
 --                      o-------------||-------------o
 --                                    ||
 --
---            ASCII-Schematic of the Butterworth-Van Dyke (BDV) model
+--            ASCII-Schematic of the Butterworth-Van Dyke (BVD) model
 -------------------------------------------------------------------------------
+
+TestBench: https://explore.partquest.com/groups/vladimirs-workspace/designs/bvd-resonator
+
 -------------------------------------------------------------------------------
 data sets:
 
