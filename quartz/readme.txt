@@ -27,3 +27,4 @@ Rm = 2.77 Ohm
 Cm = 82.5 fF
 Cp = 1.60 pF
 -------------------------------------------------------------------------------
+Sakti, Setyawan. (2014). Quartz Crystal Resonator Parameter Calculation Based on Impedance Analyser Measurement Using GRG Nonlinear Solver. Natural A. 1. 82-89. 
