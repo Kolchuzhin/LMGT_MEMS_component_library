@@ -15,13 +15,17 @@ TestBench: https://explore.partquest.com/groups/vladimirs-workspace/designs/bvd-
 
 -------------------------------------------------------------------------------
 data sets:
-
+----------
 [Wolfgang Hilberg, Funkuhrtechnik, München 1988]
 für einen Quarz mit f = 77.5 kHz gelten etwa folgende Werte:
 Lm = 3127.11 H
 Rm = 17 kOhm
 Cm = 1.35 fF
 Cp = 1.25 pF
+
+analytical:
+fs=77460.74 Hz
+fp=77502.56 Hz
 -------------------------------------------------------------------------------
 [Andreas Link, "Unterdrueckung von parasitaeren Moden in FBAR-Resonatoren", Dissertation, Universitaet Erlangen-Nuernberg, 2007]
 Die gegebenen Bauteilwerte sind typisch fuer das US-PCS-RX-Band mit AFBAR= (180μmxμm):
@@ -31,3 +35,4 @@ Cm = 82.5 fF
 Cp = 1.60 pF
 -------------------------------------------------------------------------------
 Sakti, Setyawan. (2014). Quartz Crystal Resonator Parameter Calculation Based on Impedance Analyser Measurement Using GRG Nonlinear Solver. Natural A. 1. 82-89. 
+-------------------------------------------------------------------------------
