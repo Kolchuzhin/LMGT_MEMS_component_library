@@ -1,6 +1,6 @@
 # LMGT_MEMS_component_library
 
-## LMGT/MMT MEMS/NEMS component library in VHDL-AMS
+## [LMGT/MMT](https://www.tu-chemnitz.de/etit/microsys/index.php) MEMS/NEMS component library in VHDL-AMS
 
 | component                              | VHDL-AMS / hAMSter | Simulink |  TestBench   |                   description               |
 |:---------------------------------------|:------------------:|:--------:|:------------:|:--------------------------------------------|
