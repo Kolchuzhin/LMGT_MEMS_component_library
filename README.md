@@ -14,7 +14,7 @@
 | magnetometer                           |                    |          |              | _in progress_                               |
 | microelectromechanical_transducer      | transducer.vhd     |          | SystemVision | analytical model                            |
 | miscellaneous*                         |                    |          |              | resistor, inductor, capacitor               |
-| miscellaneous*                         | Hall_sensor.vhd    |          | SystemVision | analytical model: HS-420 Hall sensor        |
+| miscellaneous* | [Hall_sensor.vhd](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/blob/master/miscellaneous/Hall_sensor.vhd) | | [SystemVision](https://explore.partquest.com/groups/vladimirs-workspace/designs/hall-sensor-testbench) | analytical model: HS-420 Hall sensor |
 | [quartz](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/tree/master/quartz) | [quartz.vhd](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/blob/master/quartz/quartz.vhd) | | [SystemVision](https://explore.partquest.com/groups/vladimirs-workspace/designs/bvd-resonator) | equivalent RLC circuit (BDV), 2nd ODE, H(s) |
 | resonator                              |                    |          |              | _in progress_                               |
 | stopper                                |                    |          |              | _in progress_                               |
