@@ -15,7 +15,7 @@
 | microelectromechanical_transducer      | transducer.vhd     |          | SystemVision | analytical model                            |
 | miscellaneous*                         |                    |          |              | resistor, inductor, capacitor               |
 | miscellaneous*                         | Hall_sensor.vhd    |          | SystemVision | analytical model: HS-420 Hall sensor        |
-| quartz                                 | quartz.vhd         |          | SystemVision | equivalent RLC circuit (BDV), 2nd ODE, H(s) |
+| [quartz](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/tree/master/quartz) | [quartz.vhd](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/blob/master/quartz/quartz.vhd) | | [SystemVision](https://explore.partquest.com/groups/vladimirs-workspace/designs/bvd-resonator) | equivalent RLC circuit (BDV), 2nd ODE, H(s) |
 | resonator                              |                    |          |              | _in progress_                               |
 | stopper                                |                    |          |              | _in progress_                               |
 | tensoresistor                          | tensoresitor.vhd   |          |              | analytical model of Me-tensoresistor        |
