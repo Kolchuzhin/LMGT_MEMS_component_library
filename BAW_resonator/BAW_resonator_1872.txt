@@ -1,7 +1,3 @@
 Parameters:
 
-fp
-fs
-k2e
-Qp
-Qs
+Butterworth-Van Dyke (BVD) model: Lm, Cm, Rm, Cp <=> fp,fs (k2e),Qp,Qs
