@@ -3,6 +3,10 @@
   * membrane: 4000x4000x5 um; 
   * air gap between the electrodes: 30 um;
 
+![membrane](https://user-images.githubusercontent.com/5137813/170740267-76edccdb-5b15-4cea-a8b5-0fb9db97f5f1.png)
+
+
+
 ## APDL scripts for ANSYS ROM Tool:
 * rom1_ememb2a.mac  =>  FE-model generation
 * rom2_ememb2a.mac  => ROM-model generation
