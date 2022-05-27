@@ -22,6 +22,10 @@
      
      The VHDL-AMS files were compiled with hAMSter simulator.
      
+## Applications:
+* pressure sensor
+* microphone
+
 ## Reference:
      1)
      2)
