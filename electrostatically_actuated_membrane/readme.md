@@ -25,6 +25,7 @@
 ## Applications:
 * pressure sensor
 * microphone
+  1) https://semiengineering.com/how-to-build-a-better-mems-microphone/
 * micropump
 
 ## Reference:
