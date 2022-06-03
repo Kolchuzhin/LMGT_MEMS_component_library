@@ -15,3 +15,28 @@ Parameters:
 -- DENS=2.329e-15 kg/um/um/um. density
 
 TestBench: testbench.vhd in hAMSter
+
+-------------------------------------------------------------------------------
+--
+--                            Lagrangian ports
+--
+--                               p1        p2
+--                   r_ext1 ->>- o         o -<<- r_ext2
+--                               |         |
+--         modal ports   o-------o---------o-------o     nodal ports
+--                       |                         |
+--                       |   o------------------o  | 
+--  fm_ext1  ->>- q1 o---o  /|      cbeam       |  o---o u1 -<<- f_ext1
+--                       |  /o------------------o  |
+--  fm_ext2  ->>- q2 o---o                         o---o u2 -<<- f_ext2
+--                       |   o------------------o  |
+--                       |  ////////////////////   |
+--                       o-------o---------o-------o
+--                               |         |
+--                               o         o
+--                      input: v1_ext    v2_ext=0 (ground)
+--                             
+--                           electrical ports  
+--
+--               ASCII-Schematic of the MEMS-component: cbeam
+------------------------------------------------------------------------------- 
