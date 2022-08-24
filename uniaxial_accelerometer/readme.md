@@ -25,6 +25,10 @@ accelZa_02.vhd
 
 testbench_02.vhd testbench
 
+## VHDL-AMS model in PartQuest
+
+https://explore.partquest.com/node/546488
+
 
 ## Reference
 "Physically-Based Reduced Order Modelling of a Uni-Axial Polysilicon MEMS Accelerometer" Sensors 2012, 12(10), 13985-14003; doi:10.3390/s121013985
