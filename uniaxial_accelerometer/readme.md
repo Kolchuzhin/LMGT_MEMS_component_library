@@ -16,7 +16,7 @@ model geometric parameters, um
 
 ## VHDL-AMS model in hAMSter
 
-accelZa_02.vhd
+[accelZa_02.vhd](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/blob/master/uniaxial_accelerometer/accelZa_02.vhd)
 
 * modes: 2 dominant (1 and 5)
 * electrodes: 3 (2 capacitances: C13 and C23)
@@ -26,6 +26,8 @@ accelZa_02.vhd
 testbench_02.vhd testbench
 
 ## VHDL-AMS model in PartQuest
+
+accelZa_03.vhd only mechanical domain
 
 https://explore.partquest.com/node/546488
 
