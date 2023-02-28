@@ -29,10 +29,9 @@
 * micropump
 
 ## Reference:
-
-     1) 10.1109/ICMA.2007.4303992
-     2) 10.1109/ICEMI.2009.5274654
+1) [10.1109/ICMA.2007.4303992](https://doi.org/10.1109/ICMA.2007.4303992)
+2) [10.1109/ICEMI.2009.5274654](https://doi.org/10.1109/ICEMI.2009.5274654)
 
 <!--
-     1) [10.1109/ICMA.2007.4303992](https://doi.org/10.1109/ICMA.2007.4303992)
-     2) [10.1109/ICEMI.2009.5274654](https://doi.org/10.1109/ICEMI.2009.5274654)
+Macromodeling of the Electrostatically Actuated Rectangle Plate Based On Modal Projection
+Macromodeling of the electrostatically actuated circular plate based on mode superposition method
