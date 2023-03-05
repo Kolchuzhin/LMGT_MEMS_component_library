@@ -28,7 +28,7 @@
   1) https://semiengineering.com/how-to-build-a-better-mems-microphone/
 * micropump
 
-## Reference:
+## other examples:
 1) [10.1109/ICMA.2007.4303992](https://doi.org/10.1109/ICMA.2007.4303992)
 2) [10.1109/ICEMI.2009.5274654](https://doi.org/10.1109/ICEMI.2009.5274654)
 
