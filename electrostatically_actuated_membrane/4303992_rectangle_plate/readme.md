@@ -1,15 +1,17 @@
 [Macromodeling of the Electrostatically Actuated Rectangle Plate Based On Modal Projection](https://doi.org/10.1109/ICMA.2007.4303992)
 
 The parameters of the system:
-thickness=1.1 um
-length=250 um
-width=200 um
-initial_gap=3.75 um
+* thickness=1.1 um
+* length=250 um
+* width=200 um
+* initial_gap=3.75 um
 
-Young's modulus=169GPa
-Poisson's ratio=0.34
-residial_stress=-20MPa
+* Young's modulus=169 GPa
+* Poisson's ratio=0.34
+* residial_stress=-20 MPa
+
 =====================================================================
+
 the 1st mode frequency of the diaphragm is about 4.5986×105Hz
 
 Ustr=124.40707−2.47012×1014X+94.48845X^2+8.83317×10−15X^3+8.21894X^4
