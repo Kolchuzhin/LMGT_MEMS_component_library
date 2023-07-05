@@ -2,6 +2,8 @@
 
 Clamped (fixed at one end) microBeam (cantilever) Actuated by Electrostatic Force (Coulomb-actuated)
 
+![Clamped-Beam](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/blob/master/clamped_beam/cbeam.png)
+
 ## Parameters:
 -----------
 ### Beam parameters, um
@@ -25,6 +27,5 @@ Clamped (fixed at one end) microBeam (cantilever) Actuated by Electrostatic Forc
 * gener_ccbeam_102.pcs 
 
 ## hAMSter_model:
-  cbeam.vhd
-  
-TestBench: testbench.vhd + testbench.cfg
+* Model: [cbeam.vhd](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/blob/master/clamped_beam/hAMSter_model/cbeam.vhd)
+* TestBench: [testbench.vhd](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/blob/master/clamped_beam/hAMSter_model/testbench.vhd) + [testbench.cfg](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/blob/master/clamped_beam/hAMSter_model/testbench.cfg)
