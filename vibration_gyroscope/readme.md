@@ -1,5 +1,9 @@
 # vibration MEMS gyroscope
 
+<!--
+![vibration MEMS gyroscope](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/blob/master/vibration_gyroscope/gyro.svg)
+-->
+
 ## RR-type
 
 ## LL-type
