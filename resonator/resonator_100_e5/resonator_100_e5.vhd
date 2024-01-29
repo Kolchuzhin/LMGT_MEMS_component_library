@@ -72,7 +72,7 @@ use ieee.math_real.all;
 --===========================================================================--
 entity resonator_100_e5 is
   generic (delay:time);
-  port (terminal struc1,struc2:translational;
+  port (terminal struc1:translational;
         terminal lagrange1,lagrange2:translational;
         terminal master1,master2:translational;
         terminal elec1,elec2,elec3,elec4,elec5:electrical);
@@ -82,7 +82,6 @@ architecture ROM of resonator_100_e5 is
   type ret_type is array(1 to 4) of real;
 
 quantity q1 across fm1 through struc1;
-quantity q2 across fm2 through struc2;
 quantity p1 across r1 through lagrange1;
 quantity p2 across r2 through lagrange2;
 quantity u1 across f1 through master1;
