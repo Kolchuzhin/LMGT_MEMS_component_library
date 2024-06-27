@@ -44,5 +44,7 @@ Originally the VHDL-AMS models were compiled with hAMSter simulator. The models 
 * [micromirror_cell_in_VHDL-AMS](https://github.com/Kolchuzhin/micromirror_cell_in_VHDL-AMS)
 * [clamped-clamped_beam_in_VHDL-AMS](https://github.com/Kolchuzhin/clamped-clamped_beam_in_VHDL-AMS)
 
+![General layout of the ROM models for MEMS](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/blob/master/MEMS_ROMs.svg)
+
 ## Reference
 + Guidelines for the Development of a VHDL-AMS Model Library. Version 2.0 
