@@ -16,21 +16,36 @@ model geometric parameters, um
 
 ## VHDL-AMS model in hAMSter
 
-[accelZa_02.vhd](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/blob/master/uniaxial_accelerometer/accelZa_02.vhd)
+### [model](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/blob/master/uniaxial_accelerometer/accelZa_02.vhd)
 
 * modes: 2 dominant (1 and 5)
 * electrodes: 3 (2 capacitances: C13 and C23)
 * element load: the linear acceleration of the structure az=1g x az_input
 * master nodes: 8
 
-testbench_02.vhd testbench
+### [testbench](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/blob/master/uniaxial_accelerometer/testbench_02.vhd) 
+loading cases:
+* key_load= 0 -- static mechanical test: az_input
+  + ANSYS: az=2.0*g => Uzmax=0.117083um (mn4) Uzmin=-0.162066um (mn2)
+
+* key_load=10 -- static mechanical test: constant modal forces
+  + fm_ext1==fm1_test -- external modal force 1: fm_1=km_1 => q_1=1
+  + fm_ext2==fm2_test -- external modal force 2: fm_2=km_2 => q_2=1
+ 
+* key_load=11 --        mechanical test: ramp/sweep 
+* key_load=12 --        mechanical test: sin/chirp
+* key_load=13 --        mechanical test: puls
+  
+* key_load=20  -- static electrical test: dc
+* key_load=21  --        electrical test: ramp/sweep, pull-in
+* key_load=22  --        electrical test: chirp
+* key_load=23  --        electrical test: puls
 
 ## VHDL-AMS model in PartQuest
 
 accelZa_03.vhd only mechanical domain
 
 https://explore.partquest.com/node/546488
-
 
 ## Reference
 "Physically-Based Reduced Order Modelling of a Uni-Axial Polysilicon MEMS Accelerometer" Sensors 2012, 12(10), 13985-14003; doi:10.3390/s121013985
