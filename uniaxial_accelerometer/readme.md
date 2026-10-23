@@ -48,4 +48,4 @@ accelZa_03.vhd only mechanical domain
 https://explore.partquest.com/node/546488
 
 ## Reference
-"Physically-Based Reduced Order Modelling of a Uni-Axial Polysilicon MEMS Accelerometer" Sensors 2012, 12(10), 13985-14003; doi:10.3390/s121013985
+"Physically-Based Reduced Order Modelling of a Uni-Axial Polysilicon MEMS Accelerometer" Sensors 2012, 12(10), 13985-14003; [doi:10.3390/s121013985](https://doi.org/10.3390/s121013985)
