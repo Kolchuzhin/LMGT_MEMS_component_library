@@ -41,9 +41,14 @@ Originally the VHDL-AMS models were compiled with hAMSter simulator. The models 
 * [piezoresistance of SWCNT in VHDL-AMS](https://github.com/Kolchuzhin/piezoresistance_of_SWCNT_in_VHDL-AMS_part_I)
 
 ## ANSYS ROM Tool
-* [micromirror_cell_in_VHDL-AMS](https://github.com/Kolchuzhin/micromirror_cell_in_VHDL-AMS)
-* [clamped-clamped_beam_in_VHDL-AMS](https://github.com/Kolchuzhin/clamped-clamped_beam_in_VHDL-AMS)
 
+| component                              | VHDL-AMS / hAMSter | Simulink |  TestBench   |        description          |
+|:---------------------------------------|:------------------:|:--------:|:------------:|:----------------------------|
+| ![micromirror_cell](https://user-images.githubusercontent.com/5137813/132745360-81275711-359b-4739-8dd0-8121eef9f312.png) | [micromirror_cell_in_VHDL-AMS](https://github.com/Kolchuzhin/micromirror_cell_in_VHDL-AMS)         |     -    |    | ANSYS ROM Tool example |
+| ![clamped-clamped_beam](https://github.com/Kolchuzhin/clamped-clamped_beam_in_VHDL-AMS/blob/master/ccbeam.png)            | [clamped-clamped_beam_in_VHDL-AMS](https://github.com/Kolchuzhin/clamped-clamped_beam_in_VHDL-AMS) |     -    |    | ANSYS ROM Tool example |
+
+
+## General layout of the ROM model for MEMS
 ![General layout of the ROM models for MEMS](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/blob/master/MEMS_ROMs.svg)
 
 ## Reference
