@@ -48,4 +48,6 @@ accelZa_03.vhd only mechanical domain
 https://explore.partquest.com/node/546488
 
 ## Reference
-"Physically-Based Reduced Order Modelling of a Uni-Axial Polysilicon MEMS Accelerometer" Sensors 2012, 12(10), 13985-14003; [doi:10.3390/s121013985](https://doi.org/10.3390/s121013985)
+"Physically-Based Reduced Order Modelling of a Uni-Axial Polysilicon MEMS Accelerometer" Sensors 2012, 12(10), 13985-14003; [10.3390/s121013985](https://doi.org/10.3390/s121013985).
+
+"Geometric Parameterized Macromodel of Uniaxial Capacitance Accelerometer Based on Modal Superposition," 2023 IEEE XVI International Scientific and Technical Conference Actual Problems of Electronic Instrument Engineering (APEIE), Novosibirsk, Russian Federation, 2023, pp. 40-43, [10.1109/APEIE59731.2023.10347838](https://doi.org/10.1109/APEIE59731.2023.10347838).
