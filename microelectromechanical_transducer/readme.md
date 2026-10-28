@@ -13,8 +13,9 @@
 | initial gap h, m                       | 10.0e-6  |  150.0e-6         | 3.0e-6          |
 |                                        |          |                   |                 |
 | calculated parameter                   |          |                   |                 |
-| resonance frequency f<sub>0</sub>, Hz  |          |                   |                 |
-| pull-in voltage, V                     |          |                   |                 |
+| resonance frequency f<sub>0</sub>, kHz |   3.835  |   0.225           |  0.192          |
+| initial capacitance, pF                |   0.885  |   5.900           |  0.0074         |
+| pull-in voltage, V                     |  95.15   |  475.38           |  22.97          |
 
 
   + set#1
