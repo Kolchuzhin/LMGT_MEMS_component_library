@@ -4,13 +4,15 @@
 
 ## parameters of micro-electomechanical transducers:
 
-| parameter,  MKS unit                   | set1     | set2              | set3            |
+| generic parameter,  MKS unit           | set1     | set2              | set3            |
 |:---------------------------------------|:--------:|:-----------------:|:---------------:|
 | mass m, kg                             | 4.658e-7 |   1.0e-4          |  1.0            |
-| spring constant c, uN/um               | 2.245e-3 |  40.0e-3          |  0.0            |
-| damping coefficient d, uNs/um          | 270.4    |  200.0            |  1.46           |
-| plate area A, m^2                      |  1.0e-6  |  (1.0e+8)*1.0e-12 | 50.0e-6*50.0e-6 |
+| spring constant c, uN/um               | 270.4    |  200.0            |  1.46           |
+| damping coefficient d, uNs/um          | 2.245e-3 |  40.0e-3          |  0.0            |
+| plate area A, m<sup>0</sup>            |  1.0e-6  |  (1.0e+8)*1.0e-12 | 50.0e-6*50.0e-6 |
 | initial gap h, m                       | 10.0e-6  |  150.0e-6         | 3.0e-6          |
+
+
 
   + set#1
   + set#2: [Release 11.0 Documentation for ANSYS: 7.4. Sample Electromechanical-Circuit Analysis]
