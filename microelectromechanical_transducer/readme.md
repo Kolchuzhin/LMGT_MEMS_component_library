@@ -6,8 +6,8 @@
 
 | parameter,  MKS unit                   | set1     | set2              | set3            |
 |:---------------------------------------|:--------:|:-----------------:|:---------------:|
-| mass m, kg                             | 4.658e-7 |   1.0e-4          |                 |
-| spring constant c, uN/um               | 2.245e-3 |  40.0e-3          |                 |
+| mass m, kg                             | 4.658e-7 |   1.0e-4          |  1.0            |
+| spring constant c, uN/um               | 2.245e-3 |  40.0e-3          |  0.0            |
 | damping coefficient d, uNs/um          | 270.4    |  200.0            |  1.46           |
 | plate area A, m^2                      |  1.0e-6  |  (1.0e+8)*1.0e-12 | 50.0e-6*50.0e-6 |
 | initial gap h, m                       | 10.0e-6  |  150.0e-6         | 3.0e-6          |
@@ -18,7 +18,8 @@
 
 ## Simulations
 ### 1. hAMSter simulator
-
+  * model: [transducer.vhd](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/blob/master/microelectromechanical_transducer/transducer.vhd)
+  * testbench 
 
 ### 2. TestBench in SystemVision:
 
