@@ -2,19 +2,7 @@
 
 ![micro-electro-mechanical transducer](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/blob/master/microelectromechanical_transducer/microelectromechanical_transducer.svg)
 
-### 1. hAMSter simulator
-### 2. TestBench in SystemVision:
-  
-  * https://www.systemvision.com/groups/vladimirs-workspace/designs/mems-transducer-static-pull
-  * https://www.systemvision.com/groups/vladimirs-workspace/designs/mems-transducer-harmonic-analysis
-  * https://www.systemvision.com/groups/vladimirs-workspace/designs/mems-transducer-transient-analysis
-  * https://www.systemvision.com/groups/vladimirs-workspace/designs/mems-transducer-mechanical-excitation
-  * https://www.systemvision.com/groups/vladimirs-workspace/designs/mems-transducer-i/v-converter  
-  * https://www.systemvision.com/groups/vladimirs-workspace/designs/mems-transducer-self-sustained-oscillations
-
-
 ## parameters of micro-electomechanical transducers:
-
 
 | parameter,  MKS unit                   | set1     | set2              | set3            |
 |:---------------------------------------|:--------:|:-----------------:|:---------------:|
@@ -27,4 +15,17 @@
   + set#1
   + set#2: [Release 11.0 Documentation for ANSYS: 7.4. Sample Electromechanical-Circuit Analysis]
   + set#3: [Übung: Microsystem design: Analysis of electromechanical system by Prof. M. Naumann]
+
+## Simulations
+### 1. hAMSter simulator
+### 2. TestBench in SystemVision:
+  
+  * https://www.systemvision.com/groups/vladimirs-workspace/designs/mems-transducer-static-pull
+  * https://www.systemvision.com/groups/vladimirs-workspace/designs/mems-transducer-harmonic-analysis
+  * https://www.systemvision.com/groups/vladimirs-workspace/designs/mems-transducer-transient-analysis
+  * https://www.systemvision.com/groups/vladimirs-workspace/designs/mems-transducer-mechanical-excitation
+  * https://www.systemvision.com/groups/vladimirs-workspace/designs/mems-transducer-i/v-converter  
+  * https://www.systemvision.com/groups/vladimirs-workspace/designs/mems-transducer-self-sustained-oscillations
+
+
 
