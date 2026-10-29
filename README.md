@@ -6,7 +6,7 @@
 
 | model | component               | VHDL-AMS / hAMSter | Simulink |  TestBench   |                   description               |
 |:-----:|:-----------------------:|:------------------:|:--------:|:------------:|:--------------------------------------------|
-| | Amperes_force_actuator                 |                    |          |              | _in progress_                               |
+| ![Amperes_force_actuator](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/blob/master/Amperes_force_actuator/Amperes_force_actuator.svg) | [Amperes_force_actuator](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/tree/master/Amperes_force_actuator) |  |  |  | _in progress_ |
 | | [BAW_resonator](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/tree/master/BAW_resonator) | - | | | [s2p file](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/blob/master/BAW_resonator/BAW_resonator_1872.s2p) |
 | | [Spiegel](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/tree/master/Spiegel) | [spiegel.vhd](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/blob/master/Spiegel/spiegel.vhd) | | | analytical model of micromirror |
 | | afm_tip                                |                    |          |              | _in progress_                               |
