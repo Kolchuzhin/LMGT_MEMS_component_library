@@ -1,5 +1,7 @@
-Parameters: Butterworth-Van Dyke (BVD) model: Lm, Cm, Rm, Cp <=> fp,fs (k2e),Qp,Qs
+## Butterworth-Van Dyke (BVD) model
 
-* fs=1.8718 GHz
-* fp=1.9249 GHz
-* k2e=6.62%
+### Parameters: 
+
+|       |       |       |
+|-------|-------|-------|
+| * fs=1.8718 GHz / Qs<br><br> * fp=1.9249 GHz / Qp <br><br> * k2e=6.62%|    <=>    |Lm, Cm, Rm, Cp|
