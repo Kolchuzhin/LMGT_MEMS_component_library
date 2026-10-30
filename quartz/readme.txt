@@ -33,6 +33,10 @@ Lm = 79.8 nH
 Rm = 2.77 Ohm
 Cm = 82.5 fF
 Cp = 1.60 pF
+
+analytical:
+fs=1.961515 GHz
+fp=2.011450 GHz
 -------------------------------------------------------------------------------
 Sakti, Setyawan. (2014). Quartz Crystal Resonator Parameter Calculation Based on Impedance Analyser Measurement Using GRG Nonlinear Solver. Natural A. 1. 82-89. 
 -------------------------------------------------------------------------------
