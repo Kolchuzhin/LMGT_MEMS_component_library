@@ -10,7 +10,7 @@
 | spring constant c, uN/um               | 270.4    |  200.0            |  1.46           |  2.0e4          |
 | damping coefficient d, uNs/um          | 2.245e-3 |  40.0e-3          |  0.0            |  1.0e-8         |
 | plate area A, m<sup>2</sup>            |  1.0e-6  |  (1.0e+8)*1.0e-12 | 50.0e-6x50.0e-6 |  1.0e-12        |
-| initial gap h, m                       | 10.0e-6  |  150.0e-6         | 3.0e-6          |  1:=e-8         | 
+| initial gap h, m                       | 10.0e-6  |  150.0e-6         | 3.0e-6          |  10e-9          | 
 |                                        |          |                   |                 |                 | 
 | calculated parameter                   |          |                   |                 |                 | 
 | resonance frequency f<sub>0</sub>, kHz |   3.835  |   0.225           |  0.192          |  1592           | 
