@@ -10,7 +10,7 @@
 | Cp                          | 1.25 pF   |   1.60 pF         |                 |   2.5 pF        |
 |                             |           |                   |                 |                 |
 | fs                          | 77460.74 Hz | 1.961515 GHz    |                 | 1.0065 MHz      |
-| fp                          | 77502.56 Hz | 2.011450 GHz    |                 | 1.0085MHz       |
+| fp                          | 77502.56 Hz | 2.011450 GHz    |                 | 1.0085 MHz      |
 
 
   + set1: [Wolfgang Hilberg, Funkuhrtechnik, München 1988] für einen Quarz mit f = 77.5 kHz
@@ -28,7 +28,7 @@
 
 | test                        | link     | description |
 |:----------------------------|:--------:|:-----------:|
-|  harmonic analysis          | [harmonic analysis](https://explore.partquest.com/groups/vladimirs-workspace/designs/bvd-resonator) |  |
+|  harmonic analysis          | [harmonic analysis](https://explore.partquest.com/designs/bvd-resonator) |  |
 
 
 
