@@ -22,7 +22,7 @@
 | Q factor                                  | 1000            |
 |                                           |                 |
 | plate area A<sub>Z</sub>, m<sup>2</sup>   | 1.42e-6         |
-| initial gap hA<sub>Z</sub>, m             | 45.0e-6         |
+| initial gap h<sub>Z</sub>, m              | 45.0e-6         |
 |                                           |                 |
 | calculated parameter                      |                 |
 | sensitive mode:                           |                 |
