@@ -8,6 +8,31 @@
 
 ![vibration MEMS gyroscope](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/blob/master/vibration_gyroscope/gyro.svg)
 
+## parameters of vibration MEMS gyroscope:
+
+| generic parameter,  MKS unit              | TPU LL-gyro     |
+|:------------------------------------------|:---------------:|
+| sensitive mode:                           |                 |
+| mass m, kg                                | 2.06e-7         |
+| spring constant c, uN/um                  | 186.49          |
+| Q factor                                  | 100             |
+| drive mode:                               |                 |
+| mass m, kg                                | 1.28e-7         |
+| spring constant c, uN/um                  | 115.73          |
+| Q factor                                  | 1000            |
+|                                           |                 |
+| plate area A<sub>Z</sub>, m<sup>2</sup>   | 1.42e-6         |
+| initial gap hA<sub>Z</sub>, m             | 45.0e-6         |
+|                                           |                 |
+| calculated parameter                      |                 |
+| sensitive mode:                           |                 |
+| resonance frequency f<sub>s</sub>, Hz     |   4592.2        |
+| damping coefficient d<sub>s</sub>, uNs/um |  40.0e-3        |
+| drive mode:                               |                 |
+| resonance frequency f<sub>d</sub>, Hz     |   4791.4        |
+| damping coefficient d<sub>d</sub>, uNs/um |                 |
+| initial capacitance C<sub>Z</sub>, pF     |                 |
+
 ## RR-type
 
 ![RR-gyroscope](https://github.com/Kolchuzhin/LMGT_MEMS_component_library/blob/master/vibration_gyroscope/RR-type/CAD%20Model%20of%20the%20Angular%20Rate%20Sensor.png)
